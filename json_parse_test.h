@@ -43,6 +43,7 @@ void json_parse(json_object * jobj, int *recursion_guard_count) {
             json_object_object_get_ex(jobj, key, &tmp_null);
             printf("key: %s\n",key);
             printf("value: %s\n",json_object_get_string(tmp_null));
+            json_object_put(tmp_null);
             break;
         }
         case json_type_object:
@@ -51,6 +52,7 @@ void json_parse(json_object * jobj, int *recursion_guard_count) {
             json_object * tmp_object;
             json_object_object_get_ex(jobj, key, &tmp_object);
             json_parse(tmp_object, recursion_guard_count);
+            json_object_put(tmp_object);
             break;
         }
         case json_type_array:
@@ -78,6 +80,8 @@ void json_parse(json_object * jobj, int *recursion_guard_count) {
                 {}
                 }
             }
+            json_object_put(jvalue);
+            json_object_put(tmp_array);
             break;
         }
         case json_type_string:
@@ -87,6 +91,7 @@ void json_parse(json_object * jobj, int *recursion_guard_count) {
             json_object_object_get_ex(jobj, key, &tmp_string);
             printf("key: %s\n",key);
             printf("value: %s\n",json_object_get_string(tmp_string));
+            json_object_put(tmp_string);
             break;
         }
         case json_type_boolean:
@@ -96,6 +101,7 @@ void json_parse(json_object * jobj, int *recursion_guard_count) {
             json_object_object_get_ex(jobj, key, &tmp_boolean);
             printf("key: %s\n",key);
             printf("value: %s\n",json_object_get_boolean(tmp_boolean)? " true " : " false ");
+            json_object_put(tmp_boolean);
             break;
         }
         case json_type_int:
@@ -105,6 +111,7 @@ void json_parse(json_object * jobj, int *recursion_guard_count) {
             json_object_object_get_ex(jobj, key, &tmp_int);
             printf("key: %s\n",key);
             printf("value: %d\n",json_object_get_int(tmp_int));
+            json_object_put(tmp_int);
             break;
         }
         case json_type_double:
@@ -114,6 +121,7 @@ void json_parse(json_object * jobj, int *recursion_guard_count) {
             json_object_object_get_ex(jobj, key, &tmp_double);
             printf("key: %s\n",key);
             printf("value: %f\n",json_object_get_double(tmp_double));
+            json_object_put(tmp_double);
             break;
         }
         default:
