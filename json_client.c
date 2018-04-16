@@ -120,6 +120,16 @@ int main()
         "}";
 */
 
+    //free all memory
+    json_object_put(jstring);
+    json_object_put(jint);
+    json_object_put(jboolean);
+    json_object_put(jdouble);
+    json_object_put(jarray);
+    json_object_put(jstring1);
+    json_object_put(jstring2);
+    json_object_put(jstring3);
+    json_object_put(jobj);
 
     if (write(fd, temp_buff, strlen(temp_buff)) == -1)
     {

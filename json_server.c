@@ -286,6 +286,7 @@ void *connection_handler(void *socket_desc)
         int recursion_guard_count = 0;
         json_object * jobj_parse = json_tokener_parse(client_message);
         json_parse(jobj_parse, &recursion_guard_count);
+        json_object_put(jobj_parse);
 
     }
 

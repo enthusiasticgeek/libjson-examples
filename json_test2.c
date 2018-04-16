@@ -52,6 +52,18 @@ int main(int argc, char * argv[])
     //printf("jobj from str:\n---\n%s\n---\n", json_object_to_json_string_ext(jobj, JSON_C_TO_STRING_SPACED | JSON_C_TO_STRING_PRETTY));
     //printf("%s\n",temp_buff);
 
+    //free all memory
+    json_object_put(jstring);
+    json_object_put(jint);
+    json_object_put(jboolean);
+    json_object_put(jdouble);
+    json_object_put(jarray);
+    json_object_put(jstring1);
+    json_object_put(jstring2);
+    json_object_put(jstring3);
+    json_object_put(jobj);
+
+
     json_object * jobj_parse = json_tokener_parse(temp_buff);
     printf("jobj from str:\n---\n%s\n---\n", json_object_to_json_string_ext(jobj_parse, JSON_C_TO_STRING_SPACED | JSON_C_TO_STRING_PRETTY));
 
@@ -60,5 +72,8 @@ int main(int argc, char * argv[])
     int recursion_guard_count=0;
     json_parse(jobj_parse, &recursion_guard_count);
 
+    //Step III: Free memory
+
+    json_object_put(jobj_parse);
     return 0;
 }

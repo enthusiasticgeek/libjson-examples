@@ -40,6 +40,7 @@ int main(int argc, char * argv[])
     //Step I: Parse JSON string
     int recursion_guard_count=0;
     json_parse(jobj_parse, &recursion_guard_count);
-
+    //Step II: Free Memory
+    json_object_put(jobj_parse);
     return 0;
 }
