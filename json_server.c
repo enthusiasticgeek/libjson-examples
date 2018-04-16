@@ -1,4 +1,4 @@
-
+//Copyright (c) 2018 Pratik M Tambe <enthusiasticgeek@gmail.com>
 #include <stdio.h>
 #include <string.h>    //strlen
 #include <stdlib.h>    //strlen

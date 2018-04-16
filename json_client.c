@@ -1,3 +1,4 @@
+//Copyright (c) 2018 Pratik M Tambe <enthusiasticgeek@gmail.com>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
