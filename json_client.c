@@ -31,7 +31,6 @@ int main()
         demoserverAddr.sin_family = AF_INET;
         demoserverAddr.sin_port = htons(8888);
         demoserverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
-        //demoserverAddr.sin_addr.s_addr = inet_addr("10.200.242.230");
         memset(demoserverAddr.sin_zero, '\0', sizeof(demoserverAddr.sin_zero));
     }
 
