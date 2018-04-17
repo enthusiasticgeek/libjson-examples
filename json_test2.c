@@ -43,8 +43,8 @@ int main(int argc, char * argv[])
 
     printf("Size of JSON object- %lu\n", sizeof(jobj));
 
-    char temp_buff[MAX_SIZE];
-    if (strcpy(temp_buff, json_object_to_json_string(jobj)) == NULL)
+    unsigned char temp_buff[MAX_SIZE];
+    if (memcpy(temp_buff, (unsigned char*)json_object_to_json_string(jobj),MAX_SIZE+1) == NULL)
     {
         perror("strcpy");
         return EXIT_FAILURE;
@@ -64,7 +64,7 @@ int main(int argc, char * argv[])
     json_object_put(jobj);
 
 
-    json_object * jobj_parse = json_tokener_parse(temp_buff);
+    json_object * jobj_parse = json_tokener_parse((char *)temp_buff);
     printf("jobj from str:\n---\n%s\n---\n", json_object_to_json_string_ext(jobj_parse, JSON_C_TO_STRING_SPACED | JSON_C_TO_STRING_PRETTY));
 
     //Step II: Parse JSON string

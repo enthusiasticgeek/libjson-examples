@@ -3,7 +3,7 @@
 
 int main(int argc, char * argv[])
 {
-    char temp_buff[MAX_SIZE] =
+    unsigned char temp_buff[MAX_SIZE] =
 
         "{" \
         "  \"firstName\": \"John\"," \
@@ -34,7 +34,7 @@ int main(int argc, char * argv[])
         "  \"spouse\": null" \
         "}";
 
-    json_object * jobj_parse = json_tokener_parse(temp_buff);
+    json_object * jobj_parse = json_tokener_parse((char*)temp_buff);
     printf("jobj from str:\n---\n%s\n---\n", json_object_to_json_string_ext(jobj_parse, JSON_C_TO_STRING_SPACED | JSON_C_TO_STRING_PRETTY));
 
     //Step I: Parse JSON string

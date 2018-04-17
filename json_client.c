@@ -78,9 +78,8 @@ int main()
 
     printf("Size of JSON object- %lu\n", sizeof(jobj));
 
-    char temp_buff[MAX_SIZE];
-
-    if (strcpy(temp_buff, json_object_to_json_string(jobj)) == NULL)
+    unsigned char temp_buff[MAX_SIZE];
+    if (memcpy(temp_buff, (unsigned char*)json_object_to_json_string(jobj),MAX_SIZE+1) == NULL)
     {
         perror("strcpy");
         return EXIT_FAILURE;
@@ -131,7 +130,7 @@ int main()
     json_object_put(jstring3);
     json_object_put(jobj);
 
-    if (write(fd, temp_buff, strlen(temp_buff)) == -1)
+    if (write(fd, temp_buff, strlen((char*)temp_buff)) == -1)
     {
         perror("write");
         return EXIT_FAILURE;

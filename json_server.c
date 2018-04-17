@@ -275,7 +275,7 @@ void *connection_handler(void *socket_desc)
     //Get the socket descriptor
     int sock = *(int*)socket_desc;
     int read_size;
-    static char client_message[BUFFER_MAX_SIZE]= {0};
+    static unsigned char client_message[BUFFER_MAX_SIZE]= {0};
 
     //Receive a message from client
     while((read_size = recv(sock , client_message , BUFFER_MAX_SIZE , 0)) > 0 )
@@ -284,7 +284,7 @@ void *connection_handler(void *socket_desc)
         // ######################################################################################################################
         syslog(LOG_INFO, "READ: >>>> %s\n <<<< ", client_message);
         int recursion_guard_count = 0;
-        json_object * jobj_parse = json_tokener_parse(client_message);
+        json_object * jobj_parse = json_tokener_parse((char*)client_message);
         json_parse(jobj_parse, &recursion_guard_count);
         json_object_put(jobj_parse);
 
